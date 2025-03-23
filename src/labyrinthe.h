@@ -1,5 +1,5 @@
-#ifndef _LABYRINTHE
-#define _LABYRINTHE
+#ifndef LABYRINTHE_H
+#define LABYRINTHE_H
 
 /* Includes */
 #include <stdio.h>
@@ -15,26 +15,32 @@
 typedef enum {NOIR = 0, ROUGE, VERT, JAUNE, BLEU, MAGENTA, CYAN, BLANC} ColorCode;
 
 /* Structure du labyrinthe */
-typedef enum {MUR = 0, DEBUT, FIN, VIDE} Case;
+typedef enum {MUR = 0, DEBUT, FIN, VIDE, CHEMIN} Type;
+
+typedef struct Case{
+    int valeur;
+    Type type;
+    bool isVisite;
+    int x, y;
+}Case;
+
 
 typedef struct Labyrinthe{
     Case** carte;
-    int hauteur;
-    int largeur;
-    Case depart;
-    Case Fin;
+    int taille;
+    Case *debut, *fin;
 }Labyrinthe;
 
 
 /* Prototype des fonctions */
 
 /* fonctions du laybrinthe */
-Labyrinthe createLabyrinthe(int, int);
+Labyrinthe createLabyrinthe(int);
 void libereLabyrinthe(Labyrinthe*);
 void afficheLabyrinthe(Labyrinthe);
 void init(Labyrinthe*);
-void genereLabyrinthe(Labyrinthe*, int x1, int y1, int x2, int y2);
-bool isOOB(Labyrinthe, int, int);
+void genereLabyrinthe(Labyrinthe*, int taille);
+bool is_finished(Labyrinthe*);
 
 /* fonction terminal */
 void clearScreen();

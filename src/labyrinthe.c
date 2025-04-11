@@ -13,8 +13,10 @@ void afficheCouleur (ColorCode fg, ColorCode bg, char c)
 
 Labyrinthe createLabyrinthe(int taille){
     Labyrinthe lab;
-    (taille % 2 == 1) ? taille : ++taille;
+    (taille % 2 == 1) ? taille : ++taille; // taille toujours impair sinon c'est cassé
     lab.taille = taille;
+
+    // Allocation de la place
     lab.carte = malloc(sizeof(Case*) * lab.taille);
     for(int ligne = 0; ligne < lab.taille; ligne++){
         lab.carte[ligne] = malloc(sizeof(Case) * lab.taille);
@@ -23,6 +25,7 @@ Labyrinthe createLabyrinthe(int taille){
     init(&lab);
     genereLabyrinthe(&lab, lab.taille);
 
+    // Poisitionne l'entrée et la sortie
     int posXdebut = 1;
     int posXfin = lab.taille - 2;
     int posYdebut = rand()%(lab.taille - 1) + 1;
@@ -44,6 +47,8 @@ Labyrinthe createLabyrinthe(int taille){
     return lab;
 }
 
+/// @brief genere le Labyrinthe en positionnant les mur et en attribuant des valeurs pour chaque case vide
+/// @param lab 
 void init(Labyrinthe *lab){
     int nb = 1;
     for (int y = 0; y < lab->taille; y++){
@@ -151,7 +156,6 @@ void afficheLabyrinthe(Labyrinthe l){
                 afficheCouleur(BLANC, NOIR, ' ');
                 break;
             }
-           //printf("%d ", l.carte[y][x].valeur);
         }
         printf("\n");
     }
@@ -177,3 +181,4 @@ int main(int argc, char ** argv){
 }
 #endif
 //gcc labyrinthe.c -o labyrinte -DDEBUG
+// source de la genération du code https://www.youtube.com/watch?v=K7vaT8bZRuk , YTB : DIMENSION CODE

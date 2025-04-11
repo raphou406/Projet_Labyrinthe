@@ -9,15 +9,9 @@ typedef struct argsLab{
     Case *current;
 }argsLab;
 
-typedef enum { CAS_BLOQUE, CAS_SORTIE, CAS_INTERSECTION } TypeRetour;
-
-typedef struct RetourParcours {
-    TypeRetour type;
-    void *donnee;
-    int lenDonnee;
-} RetourParcours;
-
 void resoudLab_thread(Labyrinthe *lab);
+void resoudLab_threadAvecLimite(Labyrinthe *lab);
 void *parcours(void *lab);
+void *parcours_avecLimiteThreads(void *lab);
 
 #endif

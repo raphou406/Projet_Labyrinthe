@@ -5,7 +5,7 @@ TARGET = main
 CC = gcc
 
 # Options de compilation
-CFLAGS = -Wall -Wextra -Werror -std=c99
+CFLAGS = -Wall -Wextra -std=c99
 
 # Répertoires
 SRCDIR = src

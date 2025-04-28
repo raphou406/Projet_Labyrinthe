@@ -227,7 +227,7 @@ void *parcours_avecLimiteThreads(void *parametres) {
             }
         }
 
-        if (nbrVoisin == 0) { // si c'est un cul-de-sac on décrémente le nombre de thread et on le tue
+        if (nbrVoisin == 0 && tete >= tailleQueue) { // si c'est un cul-de-sac on décrémente le nombre de thread et on le tue
             pthread_mutex_lock(&mutex);
             nbrThreads--;
             pthread_mutex_unlock(&mutex);

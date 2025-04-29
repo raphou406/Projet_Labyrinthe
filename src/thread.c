@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "thread.h"
 
-#define MAX_THREADS 10
+#define MAX_THREADS 2
 
 // Variables global pour les threads
 static bool found = false;
